@@ -9,6 +9,16 @@ public class Configuration
     public List<decimal> ftTVD = new List<decimal>();
     public List<decimal> Pressure = new List<decimal>();
     public List<decimal> EMW = new List<decimal>();
+    public decimal Casing_shoe_depth;
+    public decimal Top_liner_depth;
+    public decimal Liner_shoe;
+    public decimal Hole_depth;
+    public decimal Dp1_length;
+    public decimal Dc_lengt;
+    public decimal Bit_depth;
+    public decimal Dp2_od;
+    public decimal Dp1_od;
+    public decimal Dc_od;
     public void readExcelReservoil()
     {
         Application excelApp = new Application();
