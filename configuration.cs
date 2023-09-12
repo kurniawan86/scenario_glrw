@@ -23,7 +23,7 @@ public class Configuration
     {
         Application excelApp = new Application();
         Workbook excelBook = excelApp.Workbooks.Open(
-            "C:\\Users\\kurniawan\\source\\repos\\scenario_glrw\\resevoil.xlsx");
+            "C:\\Users\\mucha\\Source\\Repos\\kurniawan86\\scenario_glrw\\resevoil.xlsx");
         _Worksheet excelSheet = excelBook.Sheets[1];
 
         Microsoft.Office.Interop.Excel.Range excelRange = excelSheet.UsedRange;
@@ -92,7 +92,7 @@ public class Configuration
     {
         Application excelApp = new Application();
         Workbook excelBook = excelApp.Workbooks.Open(
-            "C:\\Users\\kurniawan\\source\\repos\\scenario_glrw\\well_trajectory.xlsx");
+            "C:\\Users\\mucha\\Source\\Repos\\kurniawan86\\scenario_glrw\\well_trajectory.xlsx");
         _Worksheet excelSheet = excelBook.Sheets[1];
 
         Microsoft.Office.Interop.Excel.Range excelRange = excelSheet.UsedRange;

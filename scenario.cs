@@ -75,6 +75,7 @@ public class Scenario
         config.Top_liner_depth,
         config.Liner_shoe,
         config.Hole_depth,
+        config.Hole_depth,
         config.Dp1_length,
         config.Dc_lengt,
         config.Bit_depth,
@@ -101,15 +102,18 @@ public class Scenario
             {
                 doMax = dx;
             }
+            Console.WriteLine(item.i);
             adX[item.i] = dx;
         }
 
+        Console.WriteLine("config.bit depth : "+config.Bit_depth);
+        Console.WriteLine("doMax : " + doMax);
         if (config.Bit_depth > doMax)
         {
             adX[7] = config.Bit_depth;
         }
-        //Console.WriteLine("adx[7]");
-        //Console.WriteLine(adX[7]);
+        Console.WriteLine("adx[7] : "+ adX[7]);
+        Console.WriteLine("adx[6] : " + adX[6]);
 
         if (adX[2] != 0.0m && (adX[1] >= adX[2] || adX[1] > adX[0] || adX[2] < adX[0]))
         {
@@ -132,6 +136,7 @@ public class Scenario
 
     private void DrawWell(ref decimal[] arYWell, ref decimal[] adX, ref decimal[] ptsWell, ref decimal maxWell, ref decimal maxdWell, ref List<ScenarioResult> wellResult, List<WellTrajectoryDetail> wellTrajectoryDetails)
     {
+        Console.WriteLine("adX1 : " + adX[1]);
         arYWell[0] = 0;
         arYWell[1] = adX[0];
         arYWell[2] = adX[1];
@@ -163,6 +168,7 @@ public class Scenario
         //if (wX < 0)
         //{
         ptsWell[0] = adX[1];
+        Console.WriteLine("ptsWell : " + ptsWell[0]);
         ptsWell[1] = adX[2];
         ptsWell[2] = adX[0];
         ptsWell[3] = arYWell[8];
@@ -172,16 +178,19 @@ public class Scenario
         for (int i = 0; i < 5; i++)
         {
             var r2 = ptsWell[i];
+            Console.WriteLine(" r2 : " + r2);
             var io = -1;
             for (int j = i + 1; j < 6; j++)
             {
                 var r3 = ptsWell[j];
+                Console.WriteLine(" r3 : " + r3);
                 if (r3 < r2)
                 {
                     io = j;
                     r2 = r3;
                 }
             }
+            Console.WriteLine("io : " + io);
 
             if (io > 0)
             {
@@ -190,6 +199,12 @@ public class Scenario
             }
         }
         CreateWellData(ref wellResult, ref maxdWell, ptsWell, maxWell, wellTrajectoryDetails);
+        Console.WriteLine("-------------------");
+        foreach (var w in wellResult)
+        {
+            Console.WriteLine(w.m_depth);
+        }
+        Console.WriteLine("-------------------");
     }
 
     private void CreateWellData(ref List<ScenarioResult> wellResult, ref decimal maxdWell, decimal[] ptsWell, decimal maxWell, List<WellTrajectoryDetail> wellTrajectoryDetails)
@@ -199,7 +214,7 @@ public class Scenario
         var iW = 0;
         var i2 = 0;
         var rAdd = ptsWell[0];
-        Console.WriteLine(rAdd);
+        
         Debug.WriteLine("******");
         foreach (var hasil in wellTrajectoryDetails)
         {
@@ -208,7 +223,6 @@ public class Scenario
             for (int index=0;index<hasil.Mdepth.Count;index++) 
             {
                 var r2 = hasil.Mdepth[index];
-                Debug.WriteLine(r2);
 
                 if (r2 > maxWell) 
                 { 
@@ -217,11 +231,12 @@ public class Scenario
 
                 var r3 = hasil.incl_deg[index];
 
-                while ((i2 < wellTrajectoryDetails.Count()) && (r2 > rAdd))
+                while ((i2 < ptsWell.Count()) && (r2 > rAdd))
                 {
+                    Console.WriteLine("TRUE - "+ wellTrajectoryDetails.Count());
+                    Console.WriteLine("TRUE");
                     if ((rAdd != 0m) && (r2 != rAdd))
                     {
-                        Console.WriteLine(index);
                         var dY1 = 100 * (r3x + (rAdd - r2x) / (r2 - r2x) * (r3 - r3x)) + 0.5m;
                         dY1 = (dY1) / 100;
 
@@ -254,11 +269,15 @@ public class Scenario
                 r2x = r2;
                 r3x = r3;
             }
+            Console.WriteLine(" i2 : "+ i2);
             while (i2 < 6)
             {
                 rAdd = ptsWell[i2];
+                Console.WriteLine("rAdd : " + rAdd);
+                Console.WriteLine("r2x : " + r2x);
                 if (rAdd != r2x)
                 {
+                    Console.WriteLine("True");
                     wellResult.Add(new ScenarioResult()
                     {
                         m_depth = rAdd,
@@ -267,9 +286,6 @@ public class Scenario
                     iW++;
                 }
                 i2++;
-                Console.WriteLine("===================");
-                Console.WriteLine("rAdd : " + rAdd);
-                Console.WriteLine("===================");
             }
             maxdWell = iW;
         }
