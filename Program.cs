@@ -27,6 +27,9 @@ namespace scenario_glrw
             config.Dp2_od = 5;
             config.Dp1_od = 6.5m;
             config.Dc_od = 8;
+            config.Casing_id = 12.415m;
+            config.Bit_size = 9.875m;
+            config.Liner_id = 10.05m;
 
             //pola 7
             Scenario sc7 = new Scenario(config);

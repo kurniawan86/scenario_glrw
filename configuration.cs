@@ -19,6 +19,10 @@ public class Configuration
     public decimal Dp2_od;
     public decimal Dp1_od;
     public decimal Dc_od;
+    public decimal Casing_id;
+    public decimal Bit_size;
+    public decimal Liner_id;
+
     public void readExcelReservoil()
     {
         Application excelApp = new Application();
