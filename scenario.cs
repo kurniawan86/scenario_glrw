@@ -4,6 +4,10 @@ using System;
 using System.Diagnostics;
 using System.Net;
 
+public class scenarioResults
+{
+    public List<ScenarioResult> result;
+}
 public class ScenarioResult
 {
     public decimal m_depth;
@@ -56,7 +60,17 @@ public class Scenario
     {
         this.config = config;
     }
-    public List<ScenarioResult> Calculate()
+
+    public void calculateAll()
+    {
+        List<List<ScenarioResult>> finalResult = new List<List<ScenarioResult>>();
+        for (int i = 0;i<this.ROP.Count;i++)
+        {
+            finalResult.Add(Calculate(i));
+        }
+        Console.WriteLine(finalResult.Count);
+    }
+    public List<ScenarioResult> Calculate(int loop)
     {
         List<ScenarioResult> result = new List<ScenarioResult>();
         List<WellTrajectoryDetail> wellTrajectoryDetails = new List<WellTrajectoryDetail>();
@@ -65,7 +79,6 @@ public class Scenario
         well.incl_deg = this.config.incDeg;
         wellTrajectoryDetails.Add(well);
 
-        var loop = 0;
         var maxdWell = 0.0m;
         var maxWell = 0.0m;
         decimal[] arYWell = { 0.0m, 0.0m, 0.0m, 0.0m, 0.0m, 0.0m, 0.0m, 0.0m, 0.0m, 0.0m, 0.0m, 0.0m, };
@@ -508,6 +521,8 @@ public class Scenario
             Console.WriteLine(apes+" - M_depth :" + result[apes].m_depth);
             Console.WriteLine(apes+" - inc Deg :" + result[apes].inc_deg);
             Console.WriteLine(apes + " - inc Deg :" + result[apes].component);
+            Console.WriteLine(apes + " - cut_depth_lfr : " + result[apes].cut_depth_lfr);
+            Console.WriteLine(apes + " - cut_depth_vel : " + result[apes].cut_depth_vel);
         }
         return result;
         Console.WriteLine("==============");

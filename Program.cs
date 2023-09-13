@@ -68,7 +68,7 @@ namespace scenario_glrw
             sc7.surfacePres.Add(14.7m);
             sc7.surfacePres.Add(14.7m);
 
-            sc7.Calculate();
+            sc7.calculateAll();
         }
     }
 }
