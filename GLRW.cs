@@ -92,13 +92,13 @@ public class GLRW
 
 			while (dA < maxA)
 			{
-				
 
-				dA = dA + dxGLRW;
+                Console.WriteLine("X axis : " + dA);
+                dA = dA + dxGLRW;
 
 			}
-
-			dL = dL + dyGLRW;
+            Console.WriteLine("Y axis : " + dL);
+            dL = dL + dyGLRW;
 		}
         Console.WriteLine("X axis : " + dA);
         Console.WriteLine("Y axis : " + dL);
