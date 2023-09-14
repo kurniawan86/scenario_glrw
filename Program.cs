@@ -68,7 +68,22 @@ namespace scenario_glrw
             sc7.surfacePres.Add(14.7m);
             sc7.surfacePres.Add(14.7m);
 
-            sc7.calculateAll();
+            //sc7.calculateAll();
+
+            // object GLWR
+            GLRW glrw7 = new GLRW(sc7);
+            glrw7.cbx = 0;
+            glrw7.gFormInfluxRate = 1995.03m;
+            glrw7.maxECD = 6.744m;
+            glrw7.minSP = 1695.03m;
+            glrw7.washL = 1050;
+            glrw7.minK = 3;
+            glrw7.rl1 = 0;
+            glrw7.rl2 = 1250;
+            glrw7.ra1 = 0;
+            glrw7.ra2 = 5000;
+
+            glrw7.calculateGLRW();
         }
     }
 }
