@@ -84,6 +84,7 @@ namespace scenario_glrw
             glrw7.ra2 = 5000;
 
             glrw7.calculateGLRW();
+            //sc7.CalculateScenarioGLRW(44,16);
         }
     }
 }

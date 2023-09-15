@@ -86,15 +86,17 @@ public class GLRW
 		var bmX = (int)(0.5 + 7 * iWX / (maxA - minA)*dxGLRW/10);
         var bmY = (int)(0.5 + 7 * iWY / (maxL - minL) * dyGLRW / 10);
 
+		dL = minL;
+		Console.WriteLine("dA :" + dA);
 		while (dL < maxL)
 		{
-			
+			dA = minA;
 
 			while (dA < maxA)
 			{
 
-                Console.WriteLine("X axis : " + dA);
-                dA = dA + dxGLRW;
+				Console.WriteLine("X axis : " + dA);
+				dA = dA + dxGLRW;
 
 			}
             Console.WriteLine("Y axis : " + dL);
